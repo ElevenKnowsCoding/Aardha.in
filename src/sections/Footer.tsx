@@ -52,11 +52,11 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-gray-400">
                 <Phone className="w-4 h-4 text-[#FFD700]" />
-                <span className="text-sm">+91 981-045-3680</span>
+                <span className="text-sm">+91 9810453680</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
                 <Mail className="w-4 h-4 text-[#FFD700]" />
-                <span className="text-sm">info@aardha.in</span>
+                <span className="text-sm">Rkbhalla91@outlook.com</span>
               </div>
               <div className="flex items-center gap-3 text-gray-400">
                 <MapPin className="w-4 h-4 text-[#FFD700]" />
@@ -156,7 +156,7 @@ export default function Footer() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="mailto:info@aardha.in"
+                href="mailto:Rkbhalla91@outlook.com"
                 className="w-10 h-10 bg-[#1A1A1A] rounded-full flex items-center justify-center text-gray-400 hover:bg-[#FFD700] hover:text-black transition-all"
               >
                 <Mail className="w-5 h-5" />
