@@ -56,27 +56,16 @@ export default function Founder() {
             <div>
               <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Meet the Founder</p>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display leading-tight mb-6">
-                Mr. R. K.
-                <br />
-                <span className="text-[#FFD700]">Bhalla</span>
+                Mr. R. K. <span className="text-[#FFD700]">Bhalla</span>
               </h2>
             </div>
 
             <div className="space-y-4 text-gray-400 text-lg leading-relaxed">
               <p>
-                Mr. R. K. Bhalla is the visionary Founder of Aardha Enterprises, a company recognised for its commitment to quality manufacturing and dependable industrial solutions. With over two decades of industry experience, he has successfully built and led the organisation with a strong focus on integrity, precision, and customer satisfaction.
+                Mr. R. K. Bhalla is the visionary Founder of Aardha Enterprises, a company he established over two decades ago with a steadfast commitment to integrity, precision, and manufacturing excellence. With more than 20 years of industry experience, he has transformed the organization from a small venture into a respected leader in the industrial sector. Under his hands-on leadership, the company has developed a reputation for delivering high-quality, dependable solutions that meet the evolving demands of modern commerce.
               </p>
               <p>
-                A firm believer in hard work and perseverance, Mr. Bhalla established Aardha Enterprises more than 20 years ago with the goal of creating a manufacturing enterprise that delivers reliable and high-quality products to meet the evolving needs of modern industries. Through dedication, strategic thinking, and hands-on leadership, he transformed the company from a small venture into a trusted and respected name in the manufacturing sector.
-              </p>
-              <p>
-                Under his leadership, Aardha Enterprises has developed expertise in manufacturing a wide range of industrial rubber products, including rubber rollers, oil seals, silicone tubes, rubber gaskets, hydraulic hoses, rubber beadings, and O-rings, and many other customised rubber products serving clients across multiple industries with consistent quality and performance.
-              </p>
-              <p>
-                Mr. Bhalla's leadership philosophy is rooted in innovation, quality excellence, and long term partnerships. He believes that a company's true strength lies in maintaining high manufacturing standards while building trust with clients.
-              </p>
-              <p>
-                Today, Aardha Enterprises continues to grow steadily under his guidance, driven by a commitment to delivering durable products, reliable solutions, and exceptional service. His entrepreneurial vision, dedication, and unwavering work ethic remain the foundation of the company's continued success.
+                Today, Aardha Enterprises is recognized for its specialized expertise in producing a diverse range of industrial rubber products, including oil seals, silicone tubes, hydraulic hoses, and customized gaskets. Mr. Bhalla's leadership philosophy is rooted in the belief that a company's true strength lies in its ability to balance innovation with long-term client partnerships. Driven by his entrepreneurial vision and an unwavering work ethic, the company continues to grow steadily, remaining a trusted name for industries seeking durable products and exceptional service.
               </p>
             </div>
           </div>

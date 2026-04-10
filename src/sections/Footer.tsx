@@ -132,6 +132,15 @@ export default function Footer() {
               © {new Date().getFullYear()} Aardha Enterprises. All rights reserved.
             </p>
             
+            <a
+              href="https://arsh/aardha.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#FFD700] text-black px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#e6c200] transition-colors"
+            >
+              Visit Arsh
+            </a>
+            
             {/* Social Links */}
             <div className="flex gap-4">
               <a

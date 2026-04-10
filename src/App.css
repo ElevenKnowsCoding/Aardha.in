@@ -318,6 +318,11 @@ body {
   }
 }
 
+/* Hero decorative rings — hide when scrolled past hero */
+.hero-rings {
+  transition: opacity 0.4s ease;
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,

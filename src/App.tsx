@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -11,29 +12,22 @@ import Benefits from './sections/Benefits';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import Navigation from './sections/Navigation';
+import AllProductsPage from './pages/AllProductsPage';
+import ArshApp from './arsh/ArshApp';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
+function AardhaMain() {
   useEffect(() => {
-    // Refresh ScrollTrigger on load
     ScrollTrigger.refresh();
-
-    return () => {
-      ScrollTrigger.getAll().forEach(st => st.kill());
-    };
+    return () => { ScrollTrigger.getAll().forEach(st => st.kill()); };
   }, []);
 
   return (
     <div className="relative bg-[#0A0A0A] min-h-screen overflow-x-hidden">
-      {/* Noise Overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-[9999] opacity-[0.03]" />
-      
-      {/* Navigation */}
       <Navigation />
-      
-      {/* Main Content */}
       <main>
         <Hero />
         <Products />
@@ -43,11 +37,19 @@ function App() {
         <Benefits />
         <Contact />
       </main>
-      
-      {/* Footer */}
       <Footer />
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AardhaMain />} />
+        <Route path="/products" element={<AllProductsPage />} />
+        <Route path="/arsh/*" element={<ArshApp />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
