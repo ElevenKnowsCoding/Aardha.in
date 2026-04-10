@@ -238,6 +238,8 @@ function AmbientGlow() {
     }
   });
 
+  if (isMobile) return <group />;
+
   return (
     <group>
       <mesh ref={ring1Ref} position={[0, 0, -2]}>
