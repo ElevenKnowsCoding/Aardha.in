@@ -154,8 +154,8 @@ function FlangeGasket() {
       </mesh>
       {/* 8 bolt holes */}
       {Array.from({ length: 8 }, (_, i) => (i / 8) * Math.PI * 2).map((angle, i) => (
-        <mesh key={i} position={[Math.cos(angle) * 0.94, Math.sin(angle) * 0.94, 0]}>
-          <cylinderGeometry args={[0.082, 0.082, 0.76, 18]} rotation={[Math.PI / 2, 0, 0]} />
+        <mesh key={i} position={[Math.cos(angle) * 0.94, Math.sin(angle) * 0.94, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.082, 0.082, 0.76, 18]} />
           <meshStandardMaterial color="#050505" roughness={1} />
         </mesh>
       ))}
