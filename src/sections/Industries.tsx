@@ -166,7 +166,7 @@ function IndustryPopup({ industry, onClose }: { industry: Industry; onClose: () 
 
           <div className="space-y-3">
             {industry.description.map((para, i) => (
-              <p key={i} className="text-gray-400 text-sm leading-relaxed">{para}</p>
+              <p key={i} className="text-gray-400 text-sm leading-relaxed text-justify">{para}</p>
             ))}
           </div>
 
@@ -238,7 +238,7 @@ export default function Industries() {
             </h2>
           </div>
           <div className="lg:pb-2">
-            <p className="text-gray-400 text-lg leading-relaxed border-l-2 border-[#FFD700]/30 pl-6">
+            <p className="text-gray-400 text-lg leading-relaxed text-justify border-l-2 border-[#FFD700]/30 pl-6">
               Our precision rubber parts serve critical infrastructure projects across diverse sectors,
               delivering reliability where it matters most.
             </p>
@@ -271,7 +271,7 @@ export default function Industries() {
                   {industries[0].tagline}
                 </p>
                 <h3 className="text-3xl lg:text-4xl font-bold text-white font-display mb-3">{industries[0].name}</h3>
-                <p className="text-gray-400 text-base leading-relaxed line-clamp-2">{industries[0].description[0]}</p>
+                <p className="text-gray-400 text-base leading-relaxed text-justify line-clamp-2">{industries[0].description[0]}</p>
                 <div className="flex flex-wrap gap-2 mt-5">
                   {industries[0].products.map((p, i) => (
                     <span key={i} className="text-xs px-3 py-1 rounded-full border text-gray-300" style={{ borderColor: `${industries[0].accent}40`, backgroundColor: `${industries[0].accent}10` }}>

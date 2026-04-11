@@ -60,7 +60,7 @@ export default function Founder() {
               </h2>
             </div>
 
-            <div className="space-y-4 text-gray-400 text-lg leading-relaxed">
+            <div className="space-y-4 text-gray-400 text-lg leading-relaxed text-justify">
               <p>
                 Mr. R. K. Bhalla is the visionary Founder of Aardha Enterprises, a company he established over two decades ago with a steadfast commitment to integrity, precision, and manufacturing excellence. With more than 20 years of industry experience, he has transformed the organization from a small venture into a respected leader in the industrial sector. Under his hands-on leadership, the company has developed a reputation for delivering high-quality, dependable solutions that meet the evolving demands of modern commerce.
               </p>

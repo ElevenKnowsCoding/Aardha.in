@@ -115,7 +115,7 @@ export default function ArshApp() {
               <span className="text-[#C8A951]">UK Infrastructure</span><br />
               & Engineering
             </h1>
-            <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mb-10">
+            <p className="text-gray-400 text-lg leading-relaxed text-justify max-w-2xl mb-10">
               Arsh Solution Ltd is the exclusive UK partner for Aardha Enterprises — an Indian manufacturer with over 20 years of experience supplying critical rubber parts to metro, rail, and infrastructure projects.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -147,20 +147,20 @@ export default function ArshApp() {
                 <span className="text-[#C8A951]">Indian Manufacturing</span><br />
                 with UK Industry
               </h2>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <p className="text-gray-400 leading-relaxed text-justify mb-6">
                 Arsh Solution Ltd was established to bridge the gap between world-class Indian manufacturing and the UK's demanding infrastructure and engineering sectors. As the exclusive UK partner for Aardha Enterprises, we bring over two decades of precision rubber manufacturing expertise directly to British clients.
               </p>
-              <p className="text-gray-400 leading-relaxed mb-8">
+              <p className="text-gray-400 leading-relaxed text-justify mb-8">
                 Our mission is simple: to provide reliable, high-quality rubber components that meet the exacting standards of UK industry — backed by local support and direct communication.
               </p>
 
               <div className="bg-[#111] border border-white/6 rounded-2xl p-6 mb-6">
                 <p className="text-xs uppercase tracking-widest text-[#C8A951]/60 mb-3 font-medium">Meet Your Director</p>
                 <h3 className="text-xl font-bold text-white mb-2">Shafi Ghafari</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                <p className="text-gray-400 text-sm leading-relaxed text-justify mb-4">
                   Based in London, Shafi personally oversees every client relationship at Arsh Solution Ltd. He holds an MSc in Biomedical Sciences from Middlesex University and brings experience as CEO of Digi Prime Ltd and as a Pharmacovigilance Associate — disciplines that demand the same attention to detail required in precision manufacturing.
                 </p>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-400 text-sm leading-relaxed text-justify">
                   Fluent in Dutch and English, Shafi provides direct, professional technical support to all UK clients.
                 </p>
               </div>
@@ -170,7 +170,7 @@ export default function ArshApp() {
               <div className="bg-[#111] border border-white/6 rounded-2xl p-6">
                 <p className="text-xs uppercase tracking-widest text-[#C8A951]/60 mb-3 font-medium">Our Partnership</p>
                 <h3 className="text-lg font-bold text-white mb-3">Aardha Enterprises, India</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                <p className="text-gray-400 text-sm leading-relaxed text-justify mb-4">
                   Aardha Enterprises is a premier Indian manufacturer of precision rubber parts, established over 20 years ago in Delhi. They specialise in both extruded and moulded rubber products for critical infrastructure applications.
                 </p>
                 <div className="space-y-2">
@@ -222,7 +222,7 @@ export default function ArshApp() {
                 </div>
                 <div className="p-6">
                   <h3 className="text-white font-bold mb-2 group-hover:text-[#C8A951] transition-colors">{p.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed text-justify">{p.desc}</p>
                 </div>
               </div>
             ))}
@@ -247,7 +247,7 @@ export default function ArshApp() {
                 Industries We <span className="text-[#C8A951]">Serve</span>
               </h2>
             </div>
-            <p className="text-gray-400 leading-relaxed border-l-2 border-[#C8A951]/30 pl-5">
+            <p className="text-gray-400 leading-relaxed text-justify border-l-2 border-[#C8A951]/30 pl-5">
               Our rubber components are trusted across the most demanding sectors in UK infrastructure and engineering.
             </p>
           </div>
@@ -257,7 +257,7 @@ export default function ArshApp() {
               <div key={i} className="bg-[#111] border border-white/6 rounded-2xl p-6 hover:border-[#C8A951]/30 transition-all duration-300">
                 <div className="w-2 h-2 rounded-full bg-[#C8A951] mb-4" />
                 <h3 className="text-white font-bold mb-2">{ind.name}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{ind.desc}</p>
+                <p className="text-gray-500 text-sm leading-relaxed text-justify">{ind.desc}</p>
               </div>
             ))}
           </div>
@@ -279,7 +279,7 @@ export default function ArshApp() {
                   {r.icon}
                 </div>
                 <h3 className="text-white font-bold text-lg mb-2">{r.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{r.desc}</p>
+                <p className="text-gray-500 text-sm leading-relaxed text-justify">{r.desc}</p>
               </div>
             ))}
           </div>
@@ -303,7 +303,7 @@ export default function ArshApp() {
             <div>
               <p className="text-xs uppercase tracking-[0.35em] text-[#C8A951]/60 mb-4 font-medium">Get In Touch</p>
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">Let's <span className="text-[#C8A951]">Talk</span></h2>
-              <p className="text-gray-400 leading-relaxed mb-10">
+              <p className="text-gray-400 leading-relaxed text-justify mb-10">
                 Whether you need a single custom part or regular supply for major infrastructure projects, we are here to support you.
               </p>
 

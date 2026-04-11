@@ -114,7 +114,7 @@ export default function Contact() {
                 <br />
                 <span className="text-[#FFD700]">something great</span>
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-400 text-lg text-justify">
                 Ready to discuss your rubber component needs? Get in touch with our engineering 
                 team for custom solutions tailored to your project requirements.
               </p>

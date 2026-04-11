@@ -100,7 +100,7 @@ export default function Benefits() {
             </h2>
           </div>
           <div className="lg:pb-2">
-            <p className="text-gray-400 text-lg leading-relaxed border-l-2 border-[#FFD700]/30 pl-6">
+            <p className="text-gray-400 text-lg leading-relaxed text-justify border-l-2 border-[#FFD700]/30 pl-6">
               Our rubber components deliver measurable benefits that improve equipment performance
               and create safer, more comfortable working environments.
             </p>
@@ -144,7 +144,7 @@ export default function Benefits() {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-400 text-base leading-relaxed">{b.description}</p>
+                <p className="text-gray-400 text-base leading-relaxed text-justify">{b.description}</p>
 
                 {/* Features */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

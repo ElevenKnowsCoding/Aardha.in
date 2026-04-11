@@ -99,7 +99,7 @@ export default function About() {
               with a <span className="text-[#FFD700]">big role.</span>
             </h2>
           </div>
-          <p className="text-gray-400 text-lg leading-relaxed border-l-2 border-[#FFD700]/30 pl-6 lg:pb-2">
+          <p className="text-gray-400 text-lg leading-relaxed text-justify border-l-2 border-[#FFD700]/30 pl-6 lg:pb-2">
             Discover what makes rubber such an incredible material and how you can put it to use
             in your operation. Our precision-engineered rubber components are designed to withstand
             extreme conditions while providing optimal performance.
@@ -179,7 +179,7 @@ export default function About() {
                   </div>
                   <div className="flex-1">
                     <p className="text-white font-semibold mb-1">{item.title}</p>
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                    <p className="text-gray-500 text-sm leading-relaxed text-justify">{item.desc}</p>
                   </div>
                   <div className="w-2 h-2 rounded-full bg-[#FFD700]/20 group-hover:bg-[#FFD700] transition-colors flex-shrink-0 mt-2" />
                 </div>
@@ -191,7 +191,7 @@ export default function About() {
               <div className="w-10 h-10 rounded-xl bg-[#FFD700]/15 flex items-center justify-center flex-shrink-0">
                 <Award className="w-5 h-5 text-[#FFD700]" />
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed text-justify">
                 Over <span className="text-[#FFD700] font-semibold">two decades</span> of precision manufacturing — trusted by 500+ clients across India.
               </p>
             </div>

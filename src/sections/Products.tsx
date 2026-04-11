@@ -411,7 +411,7 @@ function ProductPopup({ product, onClose }: { product: Product; onClose: () => v
           {/* About paragraphs */}
           <div className="space-y-3">
             {product.about.map((para, i) => (
-              <p key={i} className="text-gray-400 text-sm leading-relaxed">
+              <p key={i} className="text-gray-400 text-sm leading-relaxed text-justify">
                 {para}
               </p>
             ))}
@@ -490,7 +490,7 @@ export default function Products() {
             <br />
             Rubber Parts
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg text-justify max-w-2xl mx-auto">
             Extruded and Moulded for Use in National Highway, Metro, Airport and Dam Projects.
             Precision-engineered components for critical infrastructure.
           </p>
