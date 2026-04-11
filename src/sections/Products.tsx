@@ -28,7 +28,7 @@ const products: Product[] = [
       'We specialise in fully customised manufacturing, producing rubber bushes in any size, dimension, or specification as per client requirements. From cylindrical, flanged, tapered, and sleeve-type bushes to completely custom designs — any shape can be designed and manufactured based on drawings or samples provided.',
     ],
     features: ['Materials: NR, Nitrile, Neoprene, EPDM, Silicone', 'Cylindrical, flanged, tapered & sleeve types', 'Custom sizes, dimensions & tolerances', 'Oil, heat, wear & environment resistant'],
-    image: '/images/products/01_rubber_bush.jpg',
+    image: '/images/products/01_rubber_bush.png',
     icon: <Layers className="w-5 h-5" />,
   },
   {
@@ -41,7 +41,7 @@ const products: Product[] = [
       'All rebar caps can be custom manufactured in various sizes, colours, and material grades as per client requirements.',
     ],
     features: ['Durable construction-grade materials', 'Custom sizes & colours', 'Proper fit & long-lasting', 'Site safety compliant'],
-    image: '/images/products/02_rebar_caps.jpg',
+    image: '/images/products/02_rebar_caps.png',
     icon: <Shield className="w-5 h-5" />,
   },
   {
@@ -54,7 +54,7 @@ const products: Product[] = [
       'We offer full customization in terms of length, width, profile, material, and colour to suit specific project needs.',
     ],
     features: ['Covers multiple rebars at once', 'High visibility design', 'Custom length, width & profile', 'Flexible & durable'],
-    image: '/images/products/03_rebar_protection_strips.jpg',
+    image: '/images/products/03_rebar_protection_strips.png',
     icon: <Shield className="w-5 h-5" />,
   },
   {
@@ -67,7 +67,7 @@ const products: Product[] = [
       'All products are custom designed and manufactured according to load specifications, dimensions, and project requirements.',
     ],
     features: ['Heavy load absorption', 'Multi-directional movement', 'Earthquake & vibration resistant', 'Custom load specifications'],
-    image: '/images/products/04_bridge_bearing_rubber_parts.jpg',
+    image: '/images/products/04_bridge_bearing_rubber_parts.png',
     icon: <Zap className="w-5 h-5" />,
   },
   {
@@ -80,7 +80,7 @@ const products: Product[] = [
       'Customization is available in terms of size, threading, coating, and compatibility with different reinforcement grades.',
     ],
     features: ['High tensile strength', 'Easy installation', 'Custom threading & coating', 'Compatible with various rebar grades'],
-    image: '/images/products/05_couplers.jpg',
+    image: '/images/products/05_couplers.png',
     icon: <Factory className="w-5 h-5" />,
   },
   // Airport & Heavy-Duty
@@ -94,7 +94,7 @@ const products: Product[] = [
       'All gaskets are available in custom sizes, thicknesses, and material grades as per client specifications.',
     ],
     features: ['Wide material range', 'Custom sizes & thickness', 'High pressure rated', 'Leak-proof sealing'],
-    image: '/images/products/06_flange_gaskets.jpg',
+    image: '/images/products/06_flange_gaskets.png',
     icon: <Layers className="w-5 h-5" />,
   },
   {
@@ -107,7 +107,7 @@ const products: Product[] = [
       'Customization is available in different profiles, dimensions, and materials depending on project requirements.',
     ],
     features: ['Flexible & durable', 'Pressure resistant sealing', 'Custom profiles & dimensions', 'Permanent watertight seal'],
-    image: '/images/products/07_water_stoppers.jpg',
+    image: '/images/products/07_water_stoppers.png',
     icon: <Droplets className="w-5 h-5" />,
   },
   {
@@ -120,7 +120,7 @@ const products: Product[] = [
       'We offer customization in thickness, density, size, and material composition.',
     ],
     features: ['High pressure resistance', 'Custom thickness & density', 'Impact absorption', 'Harsh environment rated'],
-    image: '/images/products/08_dura_boards.jpg',
+    image: '/images/products/08_dura_boards.png',
     icon: <Layers className="w-5 h-5" />,
   },
   // Metro, Rail & Tunnel
@@ -134,7 +134,7 @@ const products: Product[] = [
       'All cushion pads are customized as per load capacity, thickness, and project specifications.',
     ],
     features: ['Shock & vibration absorption', 'Custom load capacity', 'Custom thickness', 'Extended service life'],
-    image: '/images/products/09_rubber_cushion_pads.jpg',
+    image: '/images/products/09_rubber_cushion_pads.png',
     icon: <Factory className="w-5 h-5" />,
   },
   {
@@ -146,7 +146,7 @@ const products: Product[] = [
       'Each component is produced according to exact design and engineering requirements provided by the client.',
     ],
     features: ['Precision alignment', 'Durable sealing', 'Per client drawings', 'Tunnel construction grade'],
-    image: '/images/products/10_segment_casting_rubber_parts.jpg',
+    image: '/images/products/10_segment_casting_rubber_parts.png',
     icon: <Factory className="w-5 h-5" />,
   },
   {
@@ -159,7 +159,7 @@ const products: Product[] = [
       'Available in various sizes and colours as per client needs.',
     ],
     features: ['Easy installation', 'Multiple sizes & colours', 'Impact resistant', 'Site safety compliant'],
-    image: '/images/products/11_tmt_protection_caps.jpg',
+    image: '/images/products/11_tmt_protection_caps.png',
     icon: <Shield className="w-5 h-5" />,
   },
   {
@@ -172,7 +172,7 @@ const products: Product[] = [
       'Customization is available in density, thickness, shape, and material.',
     ],
     features: ['Flexible sealing', 'Custom density & thickness', 'Custom shape & material', 'Compression adaptable'],
-    image: '/images/products/12_foam_gaskets.jpg',
+    image: '/images/products/12_foam_gaskets.png',
     icon: <Layers className="w-5 h-5" />,
   },
   {
@@ -185,7 +185,7 @@ const products: Product[] = [
       'All products are customized based on project-specific dimensions and requirements.',
     ],
     features: ['High pressure rated', 'Watertight seal', 'Custom dimensions', 'Tunneling grade'],
-    image: '/images/products/13_eye_seal_launching_shaft.jpg',
+    image: '/images/products/13_eye_seal_launching_shaft.png',
     icon: <Droplets className="w-5 h-5" />,
   },
   {
@@ -198,7 +198,7 @@ const products: Product[] = [
       'Customization is available as per engineering drawings and specifications.',
     ],
     features: ['Precise positioning', 'Rubber coated steel', 'Per engineering drawings', 'Stability & protection'],
-    image: '/images/products/14_mild_steel_locator_with_rubber.jpg',
+    image: '/images/products/14_mild_steel_locator_with_rubber.png',
     icon: <Factory className="w-5 h-5" />,
   },
   {
@@ -211,7 +211,7 @@ const products: Product[] = [
       'Available in customized diameters, densities, and material types.',
     ],
     features: ['Flexible & durable', 'Custom diameters & density', 'Sealing & insulation', 'Wide environment range'],
-    image: '/images/products/15_rubber_sponge_tubes.jpg',
+    image: '/images/products/15_rubber_sponge_tubes.png',
     icon: <Layers className="w-5 h-5" />,
   },
   {
@@ -224,7 +224,7 @@ const products: Product[] = [
       'Customization is available in size, thickness, hardness, and load-bearing capacity.',
     ],
     features: ['Load distribution', 'Custom size & thickness', 'Custom hardness (Shore A)', 'Heavy-duty rated'],
-    image: '/images/products/16_rubber_pads.jpg',
+    image: '/images/products/16_rubber_pads.png',
     icon: <Layers className="w-5 h-5" />,
   },
   {
@@ -237,7 +237,7 @@ const products: Product[] = [
       'All products are custom-made as per required dimensions and profiles.',
     ],
     features: ['Specialized triangular profile', 'Custom dimensions', 'Complex assembly sealing', 'Precision manufactured'],
-    image: '/images/products/17_triangular_rubber_gaskets.jpg',
+    image: '/images/products/17_triangular_rubber_gaskets.png',
     icon: <Layers className="w-5 h-5" />,
   },
   {
@@ -250,7 +250,7 @@ const products: Product[] = [
       'Customization is available based on size, load requirements, and application.',
     ],
     features: ['Heavy-duty structural support', 'Custom size & load rating', 'Long-term durability', 'Industrial grade'],
-    image: '/images/products/18_rubber_bunks.jpg',
+    image: '/images/products/18_rubber_bunks.png',
     icon: <Factory className="w-5 h-5" />,
   },
   // Pharmaceutical & Food-Grade
@@ -264,7 +264,7 @@ const products: Product[] = [
       'All products are available in custom shapes, sizes, colours, and hardness levels as per client requirements.',
     ],
     features: ['Temp range: -80°C to +260°C', 'FDA / food-grade compliant', 'Custom shapes & hardness', 'Chemical resistant'],
-    image: '/images/products/19_silicone_viton_gaskets.jpg',
+    image: '/images/products/19_silicone_viton_gaskets.png',
     icon: <Shield className="w-5 h-5" />,
   },
   {
@@ -276,7 +276,7 @@ const products: Product[] = [
       'Profiles can be developed in various shapes including square, rectangular, circular, and custom designs.',
     ],
     features: ['Custom cross-sections', 'High temp resistance', 'Sealing & insulation', 'Pharma grade'],
-    image: '/images/products/20_silicone_profiles.jpg',
+    image: '/images/products/20_silicone_profiles.png',
     icon: <Shield className="w-5 h-5" />,
   },
   {
@@ -289,7 +289,7 @@ const products: Product[] = [
       'Available in multiple sizes and materials as per client needs.',
     ],
     features: ['Tri-Clamp compatible', 'Hygienic standard compliant', 'Multiple sizes & materials', 'Leak-proof connections'],
-    image: '/images/products/21_tc_gaskets.jpg',
+    image: '/images/products/21_tc_gaskets.png',
     icon: <Shield className="w-5 h-5" />,
   },
   {
@@ -302,7 +302,7 @@ const products: Product[] = [
       'Customization is available in thickness, size, and colour.',
     ],
     features: ['High temp rated', 'Custom thickness & size', 'Custom colour', 'Flexible & durable'],
-    image: '/images/products/22_silicone_sheets.jpg',
+    image: '/images/products/22_silicone_sheets.png',
     icon: <Layers className="w-5 h-5" />,
   },
   {
@@ -315,7 +315,7 @@ const products: Product[] = [
       'Available in custom inner/outer diameters, lengths, and material grades.',
     ],
     features: ['Extreme temp resistant', 'Custom ID/OD & length', 'Medical / pharma grade', 'Non-toxic & flexible'],
-    image: '/images/products/23_silicone_tubes.jpg',
+    image: '/images/products/23_silicone_tubes.png',
     icon: <Droplets className="w-5 h-5" />,
   },
   // Dam & Water Infrastructure
@@ -329,7 +329,7 @@ const products: Product[] = [
       'Customization is available in diameter, length, and material composition.',
     ],
     features: ['High pressure rated', 'Abrasion resistant', 'Custom diameter & length', 'Slurry compatible'],
-    image: '/images/products/24_cement_hoses.jpg',
+    image: '/images/products/24_cement_hoses.png',
     icon: <Factory className="w-5 h-5" />,
   },
   {
@@ -342,7 +342,7 @@ const products: Product[] = [
       'All products are manufactured as per project specifications.',
     ],
     features: ['Enhanced grip', 'Sealing performance', 'Per project specifications', 'Underground rated'],
-    image: '/images/products/25_rock_bolt_rubber_components.jpg',
+    image: '/images/products/25_rock_bolt_rubber_components.png',
     icon: <Factory className="w-5 h-5" />,
   },
   {
@@ -355,7 +355,7 @@ const products: Product[] = [
       'Customization is available in size, material, and design.',
     ],
     features: ['High pressure rated', 'Long-term performance', 'Custom size & material', 'Dam & water grade'],
-    image: '/images/products/26_eye_seals_dam_applications.jpg',
+    image: '/images/products/26_eye_seals_dam_applications.png',
     icon: <Droplets className="w-5 h-5" />,
   },
 ];

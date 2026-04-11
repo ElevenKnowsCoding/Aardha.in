@@ -131,7 +131,7 @@ export default function About() {
             <div className="absolute -inset-4 bg-[#FFD700]/6 rounded-3xl blur-3xl" />
             <div className="relative rounded-3xl overflow-hidden border border-white/8 group h-full min-h-[420px]">
               <img
-                src="/images/products/06_flange_gaskets.jpg"
+                src="/images/products/06_flange_gaskets.png"
                 alt="Rubber Parts Collection"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />

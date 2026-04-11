@@ -11,12 +11,12 @@ const navLinks = [
 ];
 
 const products = [
-  { title: 'Extruded Rubber Profiles', desc: 'Custom profiles for sealing, insulation, and protection across all applications.', image: '/images/products/20_silicone_profiles.jpg' },
-  { title: 'Moulded Rubber Parts', desc: 'Precision components manufactured to your exact specifications and drawings.', image: '/images/products/01_rubber_bush.jpg' },
-  { title: 'Infrastructure Components', desc: 'Bridge bearing pads, waterstops, expansion joints for civil engineering.', image: '/images/products/04_bridge_bearing_rubber_parts.jpg' },
-  { title: 'Gaskets & Seals', desc: 'Industrial gaskets and seals for pipelines, flanges, and hygienic systems.', image: '/images/products/06_flange_gaskets.jpg' },
-  { title: 'Anti-Vibration Parts', desc: 'Rubber bushes, cushion pads, and mounts for vibration isolation.', image: '/images/products/09_rubber_cushion_pads.jpg' },
-  { title: 'Custom Solutions', desc: 'Bespoke parts developed from your drawings, samples, or specifications.', image: '/images/products/05_couplers.jpg' },
+  { title: 'Extruded Rubber Profiles', desc: 'Custom profiles for sealing, insulation, and protection across all applications.', image: '/images/products/20_silicone_profiles.png' },
+  { title: 'Moulded Rubber Parts', desc: 'Precision components manufactured to your exact specifications and drawings.', image: '/images/products/01_rubber_bush.png' },
+  { title: 'Infrastructure Components', desc: 'Bridge bearing pads, waterstops, expansion joints for civil engineering.', image: '/images/products/04_bridge_bearing_rubber_parts.png' },
+  { title: 'Gaskets & Seals', desc: 'Industrial gaskets and seals for pipelines, flanges, and hygienic systems.', image: '/images/products/06_flange_gaskets.png' },
+  { title: 'Anti-Vibration Parts', desc: 'Rubber bushes, cushion pads, and mounts for vibration isolation.', image: '/images/products/09_rubber_cushion_pads.png' },
+  { title: 'Custom Solutions', desc: 'Bespoke parts developed from your drawings, samples, or specifications.', image: '/images/products/05_couplers.png' },
 ];
 
 const industries = [
