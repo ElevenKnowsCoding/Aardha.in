@@ -60,9 +60,7 @@ export default function Navigation() {
 
           {/* Visit Arsh — always visible on desktop */}
           <a
-            href="https://arsh.aardha.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/arsh"
             className="hidden md:block bg-[#FFD700] text-black px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#e6c200] transition-colors flex-shrink-0"
           >
             Visit Arsh
@@ -71,9 +69,7 @@ export default function Navigation() {
           {/* Right side — Visit Arsh always visible, hamburger after scroll */}
           <div className="md:hidden flex items-center gap-2">
             <a
-              href="https://arsh.aardha.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/arsh"
               className="bg-[#FFD700] text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#e6c200] transition-colors"
             >
               Visit Arsh
@@ -102,7 +98,7 @@ export default function Navigation() {
               {link.name}
             </a>
           ))}
-          <a href="https://arsh.aardha.com" target="_blank" rel="noopener noreferrer" className="text-3xl text-[#FFD700] font-display">
+          <a href="/arsh" className="text-3xl text-[#FFD700] font-display">
             Visit Arsh
           </a>
         </div>
