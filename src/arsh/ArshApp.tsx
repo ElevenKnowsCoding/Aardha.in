@@ -11,12 +11,12 @@ const navLinks = [
 ];
 
 const products = [
-  { title: 'Extruded Rubber Profiles', desc: 'Custom profiles for sealing, insulation, and protection across all applications.', icon: '⬛' },
-  { title: 'Moulded Rubber Parts', desc: 'Precision components manufactured to your exact specifications and drawings.', icon: '🔩' },
-  { title: 'Infrastructure Components', desc: 'Bridge bearing pads, waterstops, expansion joints for civil engineering.', icon: '🏗️' },
-  { title: 'Gaskets & Seals', desc: 'Industrial gaskets and seals for pipelines, flanges, and hygienic systems.', icon: '⭕' },
-  { title: 'Anti-Vibration Parts', desc: 'Rubber bushes, cushion pads, and mounts for vibration isolation.', icon: '🔧' },
-  { title: 'Custom Solutions', desc: 'Bespoke parts developed from your drawings, samples, or specifications.', icon: '✏️' },
+  { title: 'Extruded Rubber Profiles', desc: 'Custom profiles for sealing, insulation, and protection across all applications.', image: '/images/products/20_silicone_profiles.jpg' },
+  { title: 'Moulded Rubber Parts', desc: 'Precision components manufactured to your exact specifications and drawings.', image: '/images/products/01_rubber_bush.jpg' },
+  { title: 'Infrastructure Components', desc: 'Bridge bearing pads, waterstops, expansion joints for civil engineering.', image: '/images/products/04_bridge_bearing_rubber_parts.jpg' },
+  { title: 'Gaskets & Seals', desc: 'Industrial gaskets and seals for pipelines, flanges, and hygienic systems.', image: '/images/products/06_flange_gaskets.jpg' },
+  { title: 'Anti-Vibration Parts', desc: 'Rubber bushes, cushion pads, and mounts for vibration isolation.', image: '/images/products/09_rubber_cushion_pads.jpg' },
+  { title: 'Custom Solutions', desc: 'Bespoke parts developed from your drawings, samples, or specifications.', image: '/images/products/05_couplers.jpg' },
 ];
 
 const industries = [
@@ -215,10 +215,15 @@ export default function ArshApp() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {products.map((p, i) => (
-              <div key={i} className="bg-[#111] border border-white/6 rounded-2xl p-6 hover:border-[#C8A951]/30 hover:bg-[#141414] transition-all duration-300 group">
-                <div className="text-3xl mb-4">{p.icon}</div>
-                <h3 className="text-white font-bold mb-2 group-hover:text-[#C8A951] transition-colors">{p.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
+              <div key={i} className="bg-[#111] border border-white/6 rounded-2xl overflow-hidden hover:border-[#C8A951]/30 transition-all duration-300 group">
+                <div className="relative h-48 overflow-hidden">
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-white font-bold mb-2 group-hover:text-[#C8A951] transition-colors">{p.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
+                </div>
               </div>
             ))}
           </div>
