@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowRight, CheckCircle, Phone, Mail, MapPin, Menu, X, ChevronDown, Shield, Wrench, Globe, Star } from 'lucide-react';
 
 const navLinks = [
