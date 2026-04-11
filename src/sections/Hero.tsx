@@ -10,9 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const rubberParts = [
   { name: 'Rubber Bush',   description: 'Flanged bush for vibration isolation & heavy loads' },
-  { name: 'Rebar Cap',     description: 'Safety cap for exposed reinforcement bars on sites' },
   { name: 'Flange Gasket', description: 'Industrial pipeline sealing with bolt pattern' },
-  { name: 'Coupler',       description: 'Precision rebar coupler for structural continuity' },
 ];
 
 function RubberMat({ color = '#1a1a1a', roughness = 0.88 }: { color?: string; roughness?: number }) {
@@ -29,111 +27,54 @@ function RubberMat({ color = '#1a1a1a', roughness = 0.88 }: { color?: string; ro
   );
 }
 
-// 1. RUBBER BUSH — 2 identical hollow cylinders stacked bottom-to-bottom
+// 1. RUBBER BUSH — solid: top cylinder + flange + bottom tapered cylinder + top hole
 function RubberBush() {
   const g = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
     if (!g.current) return;
-    g.current.rotation.y = clock.elapsedTime * 0.42;
-    g.current.rotation.x = 0.28 + Math.sin(clock.elapsedTime * 0.5) * 0.08;
-    g.current.position.y = Math.sin(clock.elapsedTime * 0.7) * 0.07;
-  });
-  return (
-    <group ref={g} scale={1.0}>
-      {/* Top cylinder */}
-      <mesh castShadow receiveShadow position={[0, 0.5, 0]}>
-        <cylinderGeometry args={[0.65, 0.65, 1.0, 80, 1, true]} />
-        <RubberMat color="#1a1a1a" />
-      </mesh>
-      {/* Top cap */}
-      <mesh receiveShadow position={[0, 1.0, 0]} rotation={[Math.PI, 0, 0]}>
-        <ringGeometry args={[0.25, 0.65, 80]} />
-        <RubberMat color="#1a1a1a" />
-      </mesh>
-      {/* Bottom cylinder — flipped, wider */}
-      <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
-        <cylinderGeometry args={[0.95, 0.95, 1.0, 80, 1, true]} />
-        <RubberMat color="#1a1a1a" />
-      </mesh>
-      {/* Bottom cap */}
-      <mesh receiveShadow position={[0, -1.0, 0]}>
-        <ringGeometry args={[0.25, 0.95, 80]} />
-        <RubberMat color="#1a1a1a" />
-      </mesh>
-      {/* Shared middle face */}
-      <mesh position={[0, 0, 0]}>
-        <ringGeometry args={[0.25, 0.95, 80]} />
-        <RubberMat color="#222" />
-      </mesh>
-      {/* Hollow bore */}
-      <mesh>
-        <cylinderGeometry args={[0.25, 0.25, 2.05, 48]} />
-        <meshStandardMaterial color="#050505" roughness={1} />
-      </mesh>
-    </group>
-  );
-}
-
-// 2. REBAR CAP — flat mushroom-head cap: wide flat disc top + short tapered plug
-function RebarCap() {
-  const g = useRef<THREE.Group>(null);
-  useFrame(({ clock }) => {
-    if (!g.current) return;
     g.current.rotation.y = clock.elapsedTime * 0.38;
-    g.current.rotation.x = 0.25 + Math.sin(clock.elapsedTime * 0.45) * 0.12;
-    g.current.position.y = Math.sin(clock.elapsedTime * 0.65) * 0.08;
+    g.current.position.y = Math.sin(clock.elapsedTime * 0.65) * 0.07;
   });
+
+  const dark = <meshStandardMaterial color="#060606" roughness={1} />;
+
   return (
-    <group ref={g} scale={1.05}>
-      {/* Wide flat disc top */}
-      <mesh castShadow receiveShadow position={[0, 0.12, 0]}>
-        <cylinderGeometry args={[1.1, 1.1, 0.22, 80]} />
-        <RubberMat color="#1a1a1a" />
+    <group ref={g} rotation={[0.5, 0, 0]}>
+      {/* Top cylinder */}
+      <mesh castShadow receiveShadow position={[0, 0.62, 0]}>
+        <cylinderGeometry args={[0.65, 0.72, 1.1, 80]} />
+        <RubberMat color="#1e1e1e" />
       </mesh>
-      {/* Slight chamfer on top edge */}
-      <mesh castShadow position={[0, 0.22, 0]}>
-        <cylinderGeometry args={[1.1, 0.98, 0.06, 80]} />
-        <RubberMat color="#222" />
+      {/* Top face ring (annulus) */}
+      <mesh position={[0, 1.17, 0]} rotation={[-Math.PI/2, 0, 0]}>
+        <ringGeometry args={[0.28, 0.65, 80]} />
+        <RubberMat color="#1e1e1e" />
       </mesh>
-      {/* Chamfer on bottom edge of disc */}
-      <mesh castShadow position={[0, 0.02, 0]}>
-        <cylinderGeometry args={[0.98, 1.1, 0.06, 80]} />
-        <RubberMat color="#222" />
+      {/* Flange */}
+      <mesh castShadow receiveShadow position={[0, 0.04, 0]}>
+        <cylinderGeometry args={[1.08, 1.08, 0.14, 80]} />
+        <RubberMat color="#1e1e1e" />
       </mesh>
-      {/* Short tapered plug / stem */}
-      <mesh castShadow receiveShadow position={[0, -0.42, 0]}>
-        <cylinderGeometry args={[0.52, 0.44, 0.72, 64]} />
-        <RubberMat color="#1c1c1c" />
+      {/* Bottom tapered cylinder */}
+      <mesh castShadow receiveShadow position={[0, -0.62, 0]}>
+        <cylinderGeometry args={[0.82, 0.98, 1.1, 80]} />
+        <RubberMat color="#1e1e1e" />
       </mesh>
-      {/* Plug bottom rim */}
-      <mesh castShadow position={[0, -0.78, 0]}>
-        <torusGeometry args={[0.44, 0.04, 12, 64]} />
-        <RubberMat color="#252525" />
+      {/* Bottom face solid */}
+      <mesh position={[0, -1.17, 0]} rotation={[Math.PI/2, 0, 0]}>
+        <circleGeometry args={[0.98, 80]} />
+        <RubberMat color="#1e1e1e" />
       </mesh>
-      {/* Inner bore hole through plug */}
-      <mesh position={[0, -0.42, 0]}>
-        <cylinderGeometry args={[0.22, 0.22, 0.76, 32]} />
-        <meshStandardMaterial color="#050505" roughness={1} />
+      {/* Bore hole */}
+      <mesh position={[0, 0.72, 0]}>
+        <cylinderGeometry args={[0.28, 0.28, 0.92, 48]} />
+        {dark}
       </mesh>
-      {/* Concentric ring detail on top disc */}
-      {[0.55, 0.82].map((r, i) => (
-        <mesh key={i} castShadow position={[0, 0.24, 0]}>
-          <torusGeometry args={[r, 0.018, 10, 80]} />
-          <RubberMat color="#252525" />
-        </mesh>
-      ))}
-      {/* Grip ribs on plug */}
-      {[-0.28, -0.52].map((y, i) => (
-        <mesh key={i} castShadow position={[0, y, 0]}>
-          <torusGeometry args={[0.535, 0.022, 10, 64]} />
-          <RubberMat color="#222" />
-        </mesh>
-      ))}
     </group>
   );
 }
 
-// 3. FLANGE GASKET — flat ring with 8 bolt holes, outer & inner sealing beads
+// 2. FLANGE GASKET — flat ring with 8 bolt holes, outer & inner sealing beads
 function FlangeGasket() {
   const g = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
@@ -164,62 +105,6 @@ function FlangeGasket() {
         <mesh key={i} position={[Math.cos(angle) * 0.94, Math.sin(angle) * 0.94, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.082, 0.082, 0.76, 18]} />
           <meshStandardMaterial color="#050505" roughness={1} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
-// 4. COUPLER — threaded rebar coupler, cylindrical with hex body & threaded ends
-function Coupler() {
-  const g = useRef<THREE.Group>(null);
-  useFrame(({ clock }) => {
-    if (!g.current) return;
-    g.current.rotation.y = clock.elapsedTime * 0.4;
-    g.current.rotation.x = 0.38 + Math.sin(clock.elapsedTime * 0.45) * 0.08;
-    g.current.position.y = Math.sin(clock.elapsedTime * 0.65) * 0.08;
-  });
-  return (
-    <group ref={g} scale={1.05}>
-      {/* Hex body centre */}
-      <mesh castShadow receiveShadow>
-        <cylinderGeometry args={[0.62, 0.62, 1.1, 6]} />
-        <RubberMat color="#1e1e1e" />
-      </mesh>
-      {/* Threaded end top — tapered cylinder with thread rings */}
-      <mesh castShadow receiveShadow position={[0, 0.88, 0]}>
-        <cylinderGeometry args={[0.38, 0.44, 0.56, 40]} />
-        <RubberMat color="#1a1a1a" />
-      </mesh>
-      {/* Threaded end bottom */}
-      <mesh castShadow receiveShadow position={[0, -0.88, 0]}>
-        <cylinderGeometry args={[0.44, 0.38, 0.56, 40]} />
-        <RubberMat color="#1a1a1a" />
-      </mesh>
-      {/* Thread rings top */}
-      {[0.62, 0.74, 0.86, 0.98, 1.1].map((y, i) => (
-        <mesh key={i} castShadow position={[0, y, 0]}>
-          <torusGeometry args={[0.41, 0.028, 10, 40]} />
-          <RubberMat color="#252525" />
-        </mesh>
-      ))}
-      {/* Thread rings bottom */}
-      {[-0.62, -0.74, -0.86, -0.98, -1.1].map((y, i) => (
-        <mesh key={i} castShadow position={[0, y, 0]}>
-          <torusGeometry args={[0.41, 0.028, 10, 40]} />
-          <RubberMat color="#252525" />
-        </mesh>
-      ))}
-      {/* Bore hole */}
-      <mesh>
-        <cylinderGeometry args={[0.22, 0.22, 2.6, 32]} />
-        <meshStandardMaterial color="#050505" roughness={1} />
-      </mesh>
-      {/* Hex edge highlights */}
-      {Array.from({ length: 6 }, (_, i) => (i / 6) * Math.PI * 2).map((a, i) => (
-        <mesh key={i} castShadow position={[Math.cos(a) * 0.62, 0, Math.sin(a) * 0.62]}>
-          <boxGeometry args={[0.04, 1.12, 0.04]} />
-          <RubberMat color="#2a2a2a" />
         </mesh>
       ))}
     </group>
@@ -263,20 +148,21 @@ function AmbientGlow() {
 
 
 
-const PARTS = [RubberBush, RebarCap, FlangeGasket, Coupler];
+const PARTS = [RubberBush, FlangeGasket];
 
 function Scene3D({ currentIndex }: { currentIndex: number }) {
   const Part = PARTS[currentIndex];
   return (
     <>
       {/* Studio lighting setup */}
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[4, 6, 4]}   intensity={2.5} castShadow shadow-mapSize={[2048, 2048]} />
-      <directionalLight position={[-4, 2, -3]} intensity={0.8} color="#ffffff" />
-      <directionalLight position={[0, -4, 2]}  intensity={0.3} color="#FFD700" />
-      <pointLight position={[3, 3, 3]}  intensity={1.2} color="#FFD700" distance={12} />
-      <pointLight position={[-3, 1, -2]} intensity={0.5} color="#ffffff" distance={10} />
-      <spotLight position={[0, 8, 0]} intensity={1.5} angle={0.4} penumbra={0.6} castShadow />
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[4, 6, 4]}   intensity={3.0} castShadow shadow-mapSize={[2048, 2048]} />
+      <directionalLight position={[-4, 2, -3]} intensity={1.2} color="#c8d0e0" />
+      <directionalLight position={[0, -4, 2]}  intensity={0.4} color="#FFD700" />
+      <pointLight position={[3, 3, 3]}  intensity={1.5} color="#FFD700" distance={12} />
+      <pointLight position={[-3, 1, -2]} intensity={0.8} color="#ffffff" distance={10} />
+      <pointLight position={[0, 5, 2]}  intensity={1.0} color="#e0e8ff" distance={10} />
+      <spotLight position={[0, 8, 0]} intensity={2.0} angle={0.4} penumbra={0.6} castShadow />
       <AmbientGlow />
       <Part />
       <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
