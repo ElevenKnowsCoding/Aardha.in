@@ -29,96 +29,103 @@ function RubberMat({ color = '#1a1a1a', roughness = 0.88 }: { color?: string; ro
   );
 }
 
-function SteelMat({ color = '#aaaaaa' }: { color?: string }) {
-  return <meshPhysicalMaterial color={color} roughness={0.2} metalness={0.92} envMapIntensity={1.8} />;
-}
-
-// 1. RUBBER BUSH — flanged cylindrical bush, inner metal sleeve, bore hole
+// 1. RUBBER BUSH — 2 identical hollow cylinders stacked bottom-to-bottom
 function RubberBush() {
   const g = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
     if (!g.current) return;
     g.current.rotation.y = clock.elapsedTime * 0.42;
+    g.current.rotation.x = 0.28 + Math.sin(clock.elapsedTime * 0.5) * 0.08;
     g.current.position.y = Math.sin(clock.elapsedTime * 0.7) * 0.07;
   });
   return (
-    <group ref={g} rotation={[0.42, 0, 0]} scale={1.1}>
-      <mesh castShadow receiveShadow position={[0, 0.54, 0]}>
-        <cylinderGeometry args={[0.68, 0.74, 0.88, 80, 2]} />
+    <group ref={g} scale={1.0}>
+      {/* Top cylinder */}
+      <mesh castShadow receiveShadow position={[0, 0.5, 0]}>
+        <cylinderGeometry args={[0.65, 0.65, 1.0, 80, 1, true]} />
         <RubberMat color="#1a1a1a" />
       </mesh>
-      <mesh castShadow receiveShadow position={[0, 0, 0]}>
-        <cylinderGeometry args={[1.02, 1.02, 0.22, 80]} />
+      {/* Top cap */}
+      <mesh receiveShadow position={[0, 1.0, 0]} rotation={[Math.PI, 0, 0]}>
+        <ringGeometry args={[0.25, 0.65, 80]} />
+        <RubberMat color="#1a1a1a" />
+      </mesh>
+      {/* Bottom cylinder — flipped, wider */}
+      <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
+        <cylinderGeometry args={[0.95, 0.95, 1.0, 80, 1, true]} />
+        <RubberMat color="#1a1a1a" />
+      </mesh>
+      {/* Bottom cap */}
+      <mesh receiveShadow position={[0, -1.0, 0]}>
+        <ringGeometry args={[0.25, 0.95, 80]} />
+        <RubberMat color="#1a1a1a" />
+      </mesh>
+      {/* Shared middle face */}
+      <mesh position={[0, 0, 0]}>
+        <ringGeometry args={[0.25, 0.95, 80]} />
         <RubberMat color="#222" />
       </mesh>
-      <mesh castShadow receiveShadow position={[0, -0.54, 0]}>
-        <cylinderGeometry args={[0.74, 0.68, 0.88, 80, 2]} />
-        <RubberMat color="#1a1a1a" />
-      </mesh>
-      <mesh castShadow receiveShadow>
-        <cylinderGeometry args={[0.31, 0.31, 2.05, 64]} />
-        <SteelMat color="#888" />
-      </mesh>
+      {/* Hollow bore */}
       <mesh>
-        <cylinderGeometry args={[0.17, 0.17, 2.15, 32]} />
-        <meshStandardMaterial color="#040404" roughness={1} />
+        <cylinderGeometry args={[0.25, 0.25, 2.05, 48]} />
+        <meshStandardMaterial color="#050505" roughness={1} />
       </mesh>
-      <mesh castShadow position={[0, 0.99, 0]}>
-        <torusGeometry args={[0.5, 0.068, 20, 80]} />
-        <RubberMat color="#252525" />
-      </mesh>
-      <mesh castShadow position={[0, -0.99, 0]}>
-        <torusGeometry args={[0.5, 0.068, 20, 80]} />
-        <RubberMat color="#252525" />
-      </mesh>
-      {[0,1,2,3].map(i => {
-        const a = (i / 4) * Math.PI * 2;
-        return (
-          <mesh key={i} position={[Math.cos(a) * 0.76, 0, Math.sin(a) * 0.76]}>
-            <cylinderGeometry args={[0.065, 0.065, 0.26, 16]} />
-            <meshStandardMaterial color="#040404" roughness={1} />
-          </mesh>
-        );
-      })}
     </group>
   );
 }
 
-// 2. REBAR CAP — dome-shaped safety cap that fits over rebar ends
+// 2. REBAR CAP — flat mushroom-head cap: wide flat disc top + short tapered plug
 function RebarCap() {
   const g = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
     if (!g.current) return;
-    g.current.rotation.y = clock.elapsedTime * 0.4;
-    g.current.rotation.x = 0.3 + Math.sin(clock.elapsedTime * 0.5) * 0.1;
-    g.current.position.y = Math.sin(clock.elapsedTime * 0.7) * 0.08;
+    g.current.rotation.y = clock.elapsedTime * 0.38;
+    g.current.rotation.x = 0.25 + Math.sin(clock.elapsedTime * 0.45) * 0.12;
+    g.current.position.y = Math.sin(clock.elapsedTime * 0.65) * 0.08;
   });
   return (
-    <group ref={g} scale={1.1} position={[0, 0.3, 0]}>
-      {/* Dome top */}
-      <mesh castShadow receiveShadow>
-        <sphereGeometry args={[0.75, 64, 32, 0, Math.PI * 2, 0, Math.PI * 0.55]} />
+    <group ref={g} scale={1.05}>
+      {/* Wide flat disc top */}
+      <mesh castShadow receiveShadow position={[0, 0.12, 0]}>
+        <cylinderGeometry args={[1.1, 1.1, 0.22, 80]} />
         <RubberMat color="#1a1a1a" />
       </mesh>
-      {/* Cylindrical skirt */}
-      <mesh castShadow receiveShadow position={[0, -0.52, 0]}>
-        <cylinderGeometry args={[0.75, 0.72, 0.7, 64, 2, true]} />
+      {/* Slight chamfer on top edge */}
+      <mesh castShadow position={[0, 0.22, 0]}>
+        <cylinderGeometry args={[1.1, 0.98, 0.06, 80]} />
+        <RubberMat color="#222" />
+      </mesh>
+      {/* Chamfer on bottom edge of disc */}
+      <mesh castShadow position={[0, 0.02, 0]}>
+        <cylinderGeometry args={[0.98, 1.1, 0.06, 80]} />
+        <RubberMat color="#222" />
+      </mesh>
+      {/* Short tapered plug / stem */}
+      <mesh castShadow receiveShadow position={[0, -0.42, 0]}>
+        <cylinderGeometry args={[0.52, 0.44, 0.72, 64]} />
         <RubberMat color="#1c1c1c" />
       </mesh>
-      {/* Bottom rim ring */}
-      <mesh castShadow position={[0, -0.88, 0]}>
-        <torusGeometry args={[0.735, 0.055, 16, 64]} />
+      {/* Plug bottom rim */}
+      <mesh castShadow position={[0, -0.78, 0]}>
+        <torusGeometry args={[0.44, 0.04, 12, 64]} />
         <RubberMat color="#252525" />
       </mesh>
-      {/* Inner bore (rebar hole) */}
-      <mesh position={[0, -0.6, 0]}>
-        <cylinderGeometry args={[0.28, 0.28, 0.72, 32]} />
+      {/* Inner bore hole through plug */}
+      <mesh position={[0, -0.42, 0]}>
+        <cylinderGeometry args={[0.22, 0.22, 0.76, 32]} />
         <meshStandardMaterial color="#050505" roughness={1} />
       </mesh>
-      {/* Grip ribs on skirt */}
-      {[-0.3, -0.55, -0.78].map((y, i) => (
+      {/* Concentric ring detail on top disc */}
+      {[0.55, 0.82].map((r, i) => (
+        <mesh key={i} castShadow position={[0, 0.24, 0]}>
+          <torusGeometry args={[r, 0.018, 10, 80]} />
+          <RubberMat color="#252525" />
+        </mesh>
+      ))}
+      {/* Grip ribs on plug */}
+      {[-0.28, -0.52].map((y, i) => (
         <mesh key={i} castShadow position={[0, y, 0]}>
-          <torusGeometry args={[0.755, 0.028, 10, 64]} />
+          <torusGeometry args={[0.535, 0.022, 10, 64]} />
           <RubberMat color="#222" />
         </mesh>
       ))}
