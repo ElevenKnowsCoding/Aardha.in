@@ -119,7 +119,7 @@ export default function ArshAbout() {
           <div ref={imgRef} className="relative">
             <div className="absolute -inset-3 rounded-3xl blur-3xl" style={{ backgroundColor: `${GOLD}08` }} />
             <div className="relative rounded-3xl overflow-hidden border border-white/8 group h-full min-h-[420px]">
-              <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200&q=80" alt="Precision Rubber Components"
+              <img src="/images/aardha_factory.jpeg" alt="Aardha Enterprises Manufacturing"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 

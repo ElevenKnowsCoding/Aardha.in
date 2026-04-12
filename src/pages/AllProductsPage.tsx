@@ -14,33 +14,52 @@ const categories = [
 ];
 
 function ProductPopup({ product, onClose }: { product: Product; onClose: () => void }) {
+  const [activeType, setActiveType] = useState(0);
+  const [imgIndex, setImgIndex] = useState(0);
+  const imgs = product.images && product.images.length > 1 ? product.images : null;
+
+  useEffect(() => {
+    if (!imgs) return;
+    const t = setInterval(() => setImgIndex(i => (i + 1) % imgs.length), 3000);
+    return () => clearInterval(t);
+  }, [imgs]);
+
+  const prev = () => imgs && setImgIndex(i => (i - 1 + imgs.length) % imgs.length);
+  const next = () => imgs && setImgIndex(i => (i + 1) % imgs.length);
+  const currentImg = imgs ? imgs[imgIndex] : product.image;
+
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <div
-        className="relative bg-[#111111] rounded-3xl overflow-hidden w-full max-w-5xl border border-white/10 shadow-2xl flex flex-col lg:flex-row max-h-[90vh]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-10 h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-[#FFD700] hover:text-black transition-all"
-        >
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
+      <div className="relative bg-[#111111] rounded-3xl overflow-hidden w-full max-w-5xl border border-white/10 shadow-2xl flex flex-col lg:flex-row h-[85vh]" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute top-4 right-4 z-20 w-10 h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-[#FFD700] hover:text-black transition-all">
           <X className="w-5 h-5" />
         </button>
 
-        {/* Left — Image */}
+        {/* Left — Image / Carousel */}
         <div className="lg:w-2/5 flex-shrink-0 relative">
-          <div className="aspect-square lg:aspect-auto lg:h-full min-h-[220px] overflow-hidden">
-            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+          <div className="h-48 lg:h-full overflow-hidden">
+            <img src={currentImg} alt={product.name} className="w-full h-full object-cover transition-opacity duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/40" />
           </div>
+          {imgs && (
+            <>
+              <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-[#FFD700] hover:text-black transition-all">
+                <ChevronRight className="w-4 h-4 rotate-180" />
+              </button>
+              <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-[#FFD700] hover:text-black transition-all">
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              <div className="absolute bottom-10 left-0 right-0 flex justify-center gap-1.5 z-10">
+                {imgs.map((_, i) => (
+                  <button key={i} onClick={() => setImgIndex(i)}
+                    className={`h-1.5 rounded-full transition-all ${i === imgIndex ? 'bg-[#FFD700] w-4' : 'bg-white/40 w-1.5'}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
           <div className="absolute bottom-4 left-4">
-            <span className="text-xs bg-[#FFD700] text-black font-semibold px-3 py-1.5 rounded-full">
-              {product.category}
-            </span>
+            <span className="text-xs bg-[#FFD700] text-black font-semibold px-3 py-1.5 rounded-full">{product.category}</span>
           </div>
         </div>
 
@@ -58,6 +77,34 @@ function ProductPopup({ product, onClose }: { product: Product; onClose: () => v
               <p key={i} className="text-gray-400 text-sm leading-relaxed">{para}</p>
             ))}
           </div>
+
+          {/* Coupler Type Switcher */}
+          {product.types && (
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-[#FFD700] font-semibold mb-3">
+                Coupler Types
+              </h4>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {product.types.map((t, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveType(i)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 border ${
+                      activeType === i
+                        ? 'bg-[#FFD700] text-black border-[#FFD700]'
+                        : 'border-white/10 text-gray-400 hover:border-[#FFD700]/50 hover:text-[#FFD700]'
+                    }`}
+                  >
+                    {t.name}
+                  </button>
+                ))}
+              </div>
+              <div className="border border-white/10 rounded-xl p-4">
+                <p className="text-sm font-semibold text-white mb-2">{product.types[activeType].name}</p>
+                <p className="text-sm text-gray-400 leading-relaxed">{product.types[activeType].description}</p>
+              </div>
+            </div>
+          )}
 
           <div>
             <h4 className="text-xs uppercase tracking-widest text-[#FFD700] font-semibold mb-3">

@@ -35,8 +35,8 @@ export default function Navigation() {
 
         <div className="relative px-6 lg:px-12 py-4 flex items-center justify-between max-w-7xl mx-auto">
 
-          {/* Logo — always visible, never moves */}
-          <a href="#" className="flex items-center gap-3 flex-shrink-0">
+          {/* Logo — hidden in hero, fades in after scroll */}
+          <a href="#" className={`flex items-center gap-3 flex-shrink-0 transition-all duration-500 ${scrolled ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
             <img src="/images/logo.jpeg" alt="Aardha" className="h-12 w-auto object-contain rounded-lg" />
             <span className="text-2xl font-bold font-display text-white tracking-tighter">
               AAR<span className="text-[#FFD700]">DHA</span>

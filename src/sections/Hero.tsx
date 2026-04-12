@@ -1,170 +1,84 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Environment, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const rubberParts = [
-  { name: 'Rubber Bush',   description: 'Flanged bush for vibration isolation & heavy loads' },
-  { name: 'Flange Gasket', description: 'Industrial pipeline sealing with bolt pattern' },
-];
+function AardhaLogoMesh() {
+  const groupRef = useRef<THREE.Group>(null);
 
-function RubberMat({ color = '#1a1a1a', roughness = 0.88 }: { color?: string; roughness?: number }) {
-  return (
-    <meshPhysicalMaterial
-      color={color}
-      roughness={roughness}
-      metalness={0.0}
-      clearcoat={0.15}
-      clearcoatRoughness={0.45}
-      envMapIntensity={1.4}
-      reflectivity={0.1}
+  useFrame(({ clock }) => {
+    if (!groupRef.current) return;
+    groupRef.current.rotation.y = clock.elapsedTime * 0.5;
+    groupRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.28) * 0.1;
+  });
+
+  const depth = 0.44;
+  const extOpts = { depth, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.02, bevelSegments: 4 };
+
+  const triangle = new THREE.Shape();
+  triangle.moveTo( 0.08,  0.65);
+  triangle.lineTo(-0.22, -0.07);
+  triangle.lineTo( 0.38, -0.07);
+  triangle.closePath();
+
+  const para = new THREE.Shape();
+  para.moveTo( 0.08, -0.07);
+  para.lineTo( 0.38, -0.07);
+  para.lineTo( 0.868, -1.10);
+  para.lineTo( 0.568, -1.10);
+  para.closePath();
+
+  const trap = new THREE.Shape();
+  trap.moveTo(-0.491, -0.72);
+  trap.lineTo(-0.191, -0.72);
+  trap.lineTo(-0.033, -1.10);
+  trap.lineTo(-0.649, -1.10);
+  trap.closePath();
+
+  const mat = (
+    <meshStandardMaterial
+      color="#B8960C"
+      emissive="#B8960C"
+      emissiveIntensity={0.15}
+      roughness={0.35}
+      metalness={0.1}
     />
   );
-}
 
-// 1. RUBBER BUSH — solid: top cylinder + flange + bottom tapered cylinder + top hole
-function RubberBush() {
-  const g = useRef<THREE.Group>(null);
-  useFrame(({ clock }) => {
-    if (!g.current) return;
-    g.current.rotation.y = clock.elapsedTime * 0.38;
-    g.current.position.y = Math.sin(clock.elapsedTime * 0.65) * 0.07;
-  });
-
-  const dark = <meshStandardMaterial color="#060606" roughness={1} />;
-
+  // Bounding box: x[-0.649, 0.868] y[-1.10, 0.65]
+  // midX=0.1095, midY=-0.225 => offset to center
   return (
-    <group ref={g} rotation={[0.5, 0, 0]}>
-      {/* Top cylinder */}
-      <mesh castShadow receiveShadow position={[0, 0.62, 0]}>
-        <cylinderGeometry args={[0.65, 0.72, 1.1, 80]} />
-        <RubberMat color="#1e1e1e" />
-      </mesh>
-      {/* Top face ring (annulus) */}
-      <mesh position={[0, 1.17, 0]} rotation={[-Math.PI/2, 0, 0]}>
-        <ringGeometry args={[0.28, 0.65, 80]} />
-        <RubberMat color="#1e1e1e" />
-      </mesh>
-      {/* Flange */}
-      <mesh castShadow receiveShadow position={[0, 0.04, 0]}>
-        <cylinderGeometry args={[1.08, 1.08, 0.14, 80]} />
-        <RubberMat color="#1e1e1e" />
-      </mesh>
-      {/* Bottom tapered cylinder */}
-      <mesh castShadow receiveShadow position={[0, -0.62, 0]}>
-        <cylinderGeometry args={[0.82, 0.98, 1.1, 80]} />
-        <RubberMat color="#1e1e1e" />
-      </mesh>
-      {/* Bottom face solid */}
-      <mesh position={[0, -1.17, 0]} rotation={[Math.PI/2, 0, 0]}>
-        <circleGeometry args={[0.98, 80]} />
-        <RubberMat color="#1e1e1e" />
-      </mesh>
-      {/* Bore hole */}
-      <mesh position={[0, 0.72, 0]}>
-        <cylinderGeometry args={[0.28, 0.28, 0.92, 48]} />
-        {dark}
-      </mesh>
-    </group>
-  );
-}
-
-// 2. FLANGE GASKET — flat ring with 8 bolt holes, outer & inner sealing beads
-function FlangeGasket() {
-  const g = useRef<THREE.Group>(null);
-  useFrame(({ clock }) => {
-    if (!g.current) return;
-    g.current.rotation.x = 0.26 + Math.sin(clock.elapsedTime * 0.38) * 0.1;
-    g.current.rotation.y = clock.elapsedTime * 0.3;
-    g.current.position.y = Math.sin(clock.elapsedTime * 0.82) * 0.08;
-  });
-  return (
-    <group ref={g} scale={1.05}>
-      {/* Main flat ring body */}
-      <mesh castShadow receiveShadow>
-        <torusGeometry args={[0.94, 0.35, 5, 80]} />
-        <RubberMat color="#1e1e1e" />
-      </mesh>
-      {/* Outer sealing bead */}
+    <group ref={groupRef} scale={1.25} position={[-0.11, 0.225, 0]}>
       <mesh castShadow>
-        <torusGeometry args={[1.29, 0.062, 18, 80]} />
-        <RubberMat color="#2b2b2b" roughness={0.72} />
+        <extrudeGeometry args={[triangle, extOpts]} />
+        {mat}
       </mesh>
-      {/* Inner sealing bead */}
       <mesh castShadow>
-        <torusGeometry args={[0.59, 0.062, 18, 80]} />
-        <RubberMat color="#2b2b2b" roughness={0.72} />
+        <extrudeGeometry args={[para, extOpts]} />
+        {mat}
       </mesh>
-      {/* 8 bolt holes */}
-      {Array.from({ length: 8 }, (_, i) => (i / 8) * Math.PI * 2).map((angle, i) => (
-        <mesh key={i} position={[Math.cos(angle) * 0.94, Math.sin(angle) * 0.94, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.082, 0.082, 0.76, 18]} />
-          <meshStandardMaterial color="#050505" roughness={1} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
-function AmbientGlow() {
-  const ring1Ref = useRef<THREE.Mesh>(null);
-  const ring2Ref = useRef<THREE.Mesh>(null);
-  const { size } = useThree();
-  const isMobile = size.width < 768;
-  const r1 = isMobile ? 2.2 : 3.5;
-  const r2 = isMobile ? 1.7 : 2.8;
-
-  useFrame((state) => {
-    if (ring1Ref.current) {
-      ring1Ref.current.rotation.z = state.clock.elapsedTime * 0.1;
-      ring1Ref.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
-    }
-    if (ring2Ref.current) {
-      ring2Ref.current.rotation.z = -state.clock.elapsedTime * 0.15;
-      ring2Ref.current.rotation.y = Math.cos(state.clock.elapsedTime * 0.2) * 0.1;
-    }
-  });
-
-  if (isMobile) return <group />;
-
-  return (
-    <group>
-      <mesh ref={ring1Ref} position={[0, 0, -2]}>
-        <torusGeometry args={[r1, 0.02, 16, 100]} />
-        <meshBasicMaterial color="#FFD700" transparent opacity={0.3} />
-      </mesh>
-      <mesh ref={ring2Ref} position={[0, 0, -1.5]}>
-        <torusGeometry args={[r2, 0.015, 16, 80]} />
-        <meshBasicMaterial color="#FFD700" transparent opacity={0.2} />
+      <mesh castShadow>
+        <extrudeGeometry args={[trap, extOpts]} />
+        {mat}
       </mesh>
     </group>
   );
 }
 
-
-
-const PARTS = [RubberBush, FlangeGasket];
-
-function Scene3D({ currentIndex }: { currentIndex: number }) {
-  const Part = PARTS[currentIndex];
+function Scene3D() {
   return (
     <>
-      {/* Studio lighting setup */}
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[4, 6, 4]}   intensity={3.0} castShadow shadow-mapSize={[2048, 2048]} />
-      <directionalLight position={[-4, 2, -3]} intensity={1.2} color="#c8d0e0" />
-      <directionalLight position={[0, -4, 2]}  intensity={0.4} color="#FFD700" />
-      <pointLight position={[3, 3, 3]}  intensity={1.5} color="#FFD700" distance={12} />
-      <pointLight position={[-3, 1, -2]} intensity={0.8} color="#ffffff" distance={10} />
-      <pointLight position={[0, 5, 2]}  intensity={1.0} color="#e0e8ff" distance={10} />
-      <spotLight position={[0, 8, 0]} intensity={2.0} angle={0.4} penumbra={0.6} castShadow />
-      <AmbientGlow />
-      <Part />
+      <ambientLight intensity={0.6} />
+      <directionalLight position={[4, 6, 4]} intensity={3.0} castShadow />
+      <directionalLight position={[-4, 2, -3]} intensity={1.2} color="#fff8dc" />
+      <pointLight position={[3, 3, 3]} intensity={2} color="#FFD700" distance={12} />
+      <pointLight position={[-3, 1, -2]} intensity={1} color="#ffffff" distance={10} />
+      <AardhaLogoMesh />
       <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
       <Environment preset="studio" />
     </>
@@ -176,38 +90,6 @@ export default function Hero() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const partInfoRef = useRef<HTMLDivElement>(null);
-  const [currentPartIndex, setCurrentPartIndex] = useState(0);
-
-  useEffect(() => {
-    const rings = document.querySelector('.hero-rings') as HTMLElement | null;
-    const handleScroll = () => {
-      if (!rings) return;
-      const heroHeight = sectionRef.current?.offsetHeight ?? window.innerHeight;
-      rings.style.opacity = window.scrollY > heroHeight * 0.5 ? '0' : '1';
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rings) rings.style.opacity = '0';
-    };
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPartIndex((prev) => (prev + 1) % rubberParts.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (partInfoRef.current) {
-      gsap.fromTo(partInfoRef.current,
-        { opacity: 0, x: 20 },
-        { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }
-      );
-    }
-  }, [currentPartIndex]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -237,12 +119,10 @@ export default function Hero() {
       </span>
     ));
 
-  const currentPart = rubberParts[currentPartIndex];
-
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-[#0A0A0A] flex flex-col lg:min-h-screen"
+      className="relative w-full bg-[#0A0A0A] flex flex-col lg:min-h-screen overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
@@ -252,22 +132,16 @@ export default function Hero() {
       </div>
       <div className="absolute inset-0 grid-bg opacity-10 z-[1]" />
 
-      {/* Decorative rings - single set, aligned with 3D canvas */}
-      <div className="absolute inset-0 z-[10] pointer-events-none">
-        <div className="hidden lg:flex absolute inset-0 items-center justify-center">
-          <div className="absolute rounded-full border border-[#FFD700]/25" style={{ width: '90vmin', height: '90vmin' }} />
-          <div className="absolute rounded-full border border-[#FFD700]/15" style={{ width: '68vmin', height: '68vmin' }} />
-          <div className="absolute rounded-full bg-[#FFD700]/5 blur-3xl" style={{ width: '50vmin', height: '50vmin' }} />
-        </div>
+      {/* 3D canvas — desktop only */}
+      <div className="absolute inset-0 z-[15] pointer-events-none hidden lg:block">
+        <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
+          <Scene3D />
+        </Canvas>
       </div>
 
       {/* ── MOBILE LAYOUT ── */}
       <div className="flex flex-col lg:hidden relative z-20" style={{ height: '100dvh' }}>
-
-        {/* Nav spacer */}
         <div style={{ height: 64 }} />
-
-        {/* Headline */}
         <div className="flex flex-col items-center text-center px-6 pt-3 pb-2">
           <h1 className="text-[2.4rem] font-bold font-display leading-[1.05] tracking-tight">
             <span className="block text-white">Find the</span>
@@ -279,18 +153,40 @@ export default function Hero() {
             <span className="text-[#FFD700]">Extruded &amp; Moulded</span>
           </p>
         </div>
-
-        {/* 3D canvas — fills remaining space */}
         <div className="flex-1 relative min-h-0">
           <div className="absolute inset-0 pointer-events-none">
-            <Canvas camera={{ position: [0, 0, 4.2], fov: 50 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }}>
-              <Scene3D currentIndex={currentPartIndex} />
+            <Canvas camera={{ position: [0, 0, 3], fov: 45 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }}>
+              <Scene3D />
             </Canvas>
           </div>
         </div>
-
-        {/* CTAs + dots — pinned at bottom */}
         <div className="flex flex-col items-center gap-3 px-6 pb-8 pt-3">
+          <div className="border border-[#FFD700]/20 rounded-2xl p-5 w-full bg-[#111]/80 backdrop-blur-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
+                <img src="/images/logo.jpeg" alt="Aardha" className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <p className="text-[#FFD700] text-xs uppercase tracking-widest font-semibold">About Aardha</p>
+                <h3 className="text-white font-bold text-base leading-tight">Aardha Enterprises</h3>
+              </div>
+            </div>
+            <p className="text-gray-400 text-xs leading-relaxed mb-3">25+ years of precision rubber manufacturing — trusted by 500+ clients across India's biggest infrastructure projects.</p>
+            <div className="flex gap-3">
+              <div className="flex-1 bg-[#FFD700]/10 rounded-xl p-2.5 text-center">
+                <p className="text-[#FFD700] font-bold text-lg leading-none">25+</p>
+                <p className="text-gray-500 text-[10px] mt-0.5">Years</p>
+              </div>
+              <div className="flex-1 bg-[#FFD700]/10 rounded-xl p-2.5 text-center">
+                <p className="text-[#FFD700] font-bold text-lg leading-none">500+</p>
+                <p className="text-gray-500 text-[10px] mt-0.5">Clients</p>
+              </div>
+              <div className="flex-1 bg-[#FFD700]/10 rounded-xl p-2.5 text-center">
+                <p className="text-[#FFD700] font-bold text-lg leading-none">ISO</p>
+                <p className="text-gray-500 text-[10px] mt-0.5">Certified</p>
+              </div>
+            </div>
+          </div>
           <div className="flex gap-3 justify-center">
             <a href="#contact" className="bg-[#FFD700] text-black px-6 py-3 rounded-full font-semibold text-sm flex items-center gap-2 hover:bg-[#e6c200] transition-colors">
               Contact Us <ArrowRight className="w-4 h-4" />
@@ -299,30 +195,11 @@ export default function Hero() {
               View Products
             </a>
           </div>
-          <div className="flex gap-2">
-            {rubberParts.map((_, idx) => (
-              <button key={idx} onClick={() => setCurrentPartIndex(idx)}
-                className={`h-1 rounded-full transition-all duration-500 ${
-                  idx === currentPartIndex ? 'bg-[#FFD700] w-8' : 'bg-white/20 w-4'
-                }`}
-              />
-            ))}
-          </div>
         </div>
-
       </div>
 
       {/* ── DESKTOP LAYOUT ── */}
       <div className="hidden lg:flex flex-1 items-center relative z-20 w-full max-w-7xl mx-auto px-12 py-32">
-        {/* 3D canvas — full background */}
-        <div className="absolute inset-0 z-[61] flex items-center justify-center pointer-events-none">
-          <div className="w-full h-full max-w-[800px] max-h-[800px]">
-            <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
-              <Scene3D currentIndex={currentPartIndex} />
-            </Canvas>
-          </div>
-        </div>
-
         <div className="relative z-[70] grid grid-cols-12 gap-8 items-center w-full min-h-[70vh]">
           {/* Left — headline + CTAs */}
           <div className="col-span-7 space-y-8">
@@ -347,41 +224,39 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right — product info card */}
-          <div className="col-span-5 flex flex-col items-end justify-center">
-            <div ref={partInfoRef} className="glass-dark rounded-2xl p-6 md:p-8 max-w-sm text-right border border-white/10">
-              <p className="text-xs text-[#FFD700]/70 uppercase tracking-[0.2em] mb-3">Featured Product</p>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{currentPart.name}</h3>
-              <p className="text-gray-400 text-sm md:text-base mb-6">{currentPart.description}</p>
-              <div className="flex justify-end gap-2 mb-4">
-                {rubberParts.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentPartIndex(idx)}
-                    className={`h-1 rounded-full transition-all duration-500 ${
-                      idx === currentPartIndex ? 'bg-[#FFD700] w-10' : 'bg-white/20 w-4 hover:bg-white/40'
-                    }`}
-                  />
-                ))}
+          {/* Right — stats card */}
+          <div className="col-span-4 col-start-9 flex flex-col items-end justify-center gap-4">
+            <div className="border border-[#FFD700]/20 rounded-2xl p-6 w-full bg-[#111]/80 backdrop-blur-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+                  <img src="/images/logo.jpeg" alt="Aardha" className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <p className="text-[#FFD700] text-xs uppercase tracking-widest font-semibold">About Aardha</p>
+                  <h3 className="text-white font-bold text-lg leading-tight">Aardha Enterprises</h3>
+                </div>
               </div>
-              <p className="text-gray-600 text-xs">
-                {String(currentPartIndex + 1).padStart(2, '0')} / {String(rubberParts.length).padStart(2, '0')}
-              </p>
-            </div>
-            <div className="mt-6 flex items-center gap-4 glass-dark rounded-xl px-5 py-3 border border-white/5">
-              <div className="w-10 h-10 bg-[#FFD700]/20 rounded-full flex items-center justify-center">
-                <span className="text-[#FFD700] font-bold text-sm">25+</span>
-              </div>
-              <div className="text-right">
-                <p className="text-white text-sm font-medium">Years of Excellence</p>
-                <p className="text-gray-500 text-xs">ISO 9001:2015 Certified</p>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">25+ years of precision rubber manufacturing — trusted by 500+ clients across India's biggest infrastructure projects.</p>
+              <div className="flex gap-3">
+                <div className="flex-1 bg-[#FFD700]/10 rounded-xl p-3 text-center">
+                  <p className="text-[#FFD700] font-bold text-xl leading-none">25+</p>
+                  <p className="text-gray-500 text-xs mt-1">Years</p>
+                </div>
+                <div className="flex-1 bg-[#FFD700]/10 rounded-xl p-3 text-center">
+                  <p className="text-[#FFD700] font-bold text-xl leading-none">500+</p>
+                  <p className="text-gray-500 text-xs mt-1">Clients</p>
+                </div>
+                <div className="flex-1 bg-[#FFD700]/10 rounded-xl p-3 text-center">
+                  <p className="text-[#FFD700] font-bold text-xl leading-none">ISO</p>
+                  <p className="text-gray-500 text-xs mt-1">Certified</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator - desktop only */}
+      {/* Scroll indicator */}
       <div className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 animate-bounce">
         <span className="text-gray-500 text-xs uppercase tracking-widest">Scroll</span>
         <ChevronDown className="w-5 h-5 text-[#FFD700]" />

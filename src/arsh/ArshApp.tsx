@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ArshNav        from './sections/ArshNav';
 import ArshHero       from './sections/ArshHero';
 import ArshAbout      from './sections/ArshAbout';
-import ArshIndustries from './sections/ArshIndustries';
 import ArshWhyUs      from './sections/ArshWhyUs';
 import ArshDirector   from './sections/ArshDirector';
 import ArshContact    from './sections/ArshContact';
@@ -28,7 +27,6 @@ export default function ArshApp() {
       <main>
         <ArshHero />
         <ArshAbout />
-        <ArshIndustries />
         <ArshWhyUs />
         <ArshDirector />
         <ArshContact />
