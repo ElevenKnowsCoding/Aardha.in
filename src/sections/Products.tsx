@@ -391,7 +391,6 @@ const products: Product[] = [
     ],
     features: ['High pressure rated', 'Long-term performance', 'Custom size & material', 'Dam & water grade'],
     image: '/images/products/26_eye_seals_dam_applications.jpg',
-    images: ['/images/products/26_eye_seals_dam_applications.jpg', '/images/products/26_eye_seals_dam_applications_1_new.png'],
     icon: <Droplets className="w-5 h-5" />,
   },
   // Highway & Infrastructure — Additional
