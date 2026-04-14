@@ -148,7 +148,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Address</p>
-                  <p className="text-white font-semibold">Delhi, India</p>
+                  <p className="text-white font-semibold">Plot No 952, Sector-32, Yeida Industrial Area<br />Greater Noida, Uttar Pradesh - 203135</p>
                 </div>
               </div>
             </div>

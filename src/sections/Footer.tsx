@@ -47,8 +47,6 @@ export default function Footer() {
               Precision rubber parts for industrial applications. Quality extruded and moulded 
               rubber components since 1998. ISO 9001:2015 certified.
             </p>
-            
-            {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-gray-400">
                 <Phone className="w-4 h-4 text-[#FFD700]" />
@@ -58,9 +56,9 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-[#FFD700]" />
                 <span className="text-sm">Rkbhalla91@outlook.com</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-400">
-                <MapPin className="w-4 h-4 text-[#FFD700]" />
-                <span className="text-sm">Delhi, India</span>
+              <div className="flex items-start gap-3 text-gray-400">
+                <MapPin className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Plot No 952, Sector-32, Yeida Industrial Area,<br />Greater Noida, Uttar Pradesh - 203135</span>
               </div>
             </div>
           </div>
@@ -71,30 +69,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className="text-gray-400 hover:text-[#FFD700] transition-colors text-sm flex items-center gap-1 group"
-                  >
-                    {link.name}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Industries Column */}
-          <div>
-            <h4 className="text-white font-semibold mb-6">Industries</h4>
-            <ul className="space-y-3">
-              {footerLinks.industries.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className="text-gray-400 hover:text-[#FFD700] transition-colors text-sm flex items-center gap-1 group"
-                  >
+                  <a href={link.href} onClick={(e) => handleLinkClick(e, link.href)}
+                    className="text-gray-400 hover:text-[#FFD700] transition-colors text-sm flex items-center gap-1 group">
                     {link.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
@@ -109,17 +85,40 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className="text-gray-400 hover:text-[#FFD700] transition-colors text-sm flex items-center gap-1 group"
-                  >
+                  <a href={link.href} onClick={(e) => handleLinkClick(e, link.href)}
+                    className="text-gray-400 hover:text-[#FFD700] transition-colors text-sm flex items-center gap-1 group">
                     {link.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Visit Factory Column */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Visit Our Factory</h4>
+            <a
+              href="https://maps.app.goo.gl/ePGqnxBwKrJEnf8j6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block relative rounded-xl overflow-hidden border border-white/10 hover:border-[#FFD700]/50 transition-colors group"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.5!2d77.5!3d28.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cbf000000001%3A0x0!2sPlot+No+952+Sector+32+Greater+Noida!5e0!3m2!1sen!2sin!4v1"
+                width="100%"
+                height="220"
+                style={{ border: 0, display: 'block', pointerEvents: 'none' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <span className="bg-[#FFD700] text-black text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1">
+                  <MapPin className="w-3 h-3" /> Open Maps
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
